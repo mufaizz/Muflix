@@ -3,10 +3,12 @@ name: Build APK
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -21,6 +23,7 @@ jobs:
           rm -rf test/ integration_test/ .gitignore
 
       - run: flutter pub get
+
       - run: flutter build apk --release
 
       - uses: actions/upload-artifact@v4

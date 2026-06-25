@@ -1,0 +1,256 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Muflix | Premium Cinema</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#e9bcb6",
+                    "surface-tint": "#ffb4aa",
+                    "surface-bright": "#3a3939",
+                    "surface-variant": "#353534",
+                    "surface-container-low": "#1c1b1b",
+                    "inverse-primary": "#c0000c",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-primary-fixed-variant": "#930007",
+                    "background": "#131313",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary": "#c8c6c5",
+                    "primary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-dim": "#131313",
+                    "tertiary-container": "#717373",
+                    "surface-container-highest": "#353534",
+                    "on-secondary": "#313030",
+                    "on-secondary-fixed-variant": "#474746",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-primary": "#690003",
+                    "surface": "#131313",
+                    "outline-variant": "#5e3f3b",
+                    "on-tertiary": "#2f3131",
+                    "outline": "#af8782",
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "primary": "#ffb4aa",
+                    "tertiary": "#c6c6c7",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary-fixed": "#410001",
+                    "on-primary-container": "#fff7f6",
+                    "surface-container-high": "#2a2a2a",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#474746",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-container": "#f9f9f9",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "error-container": "#93000a",
+                    "on-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#e50914",
+                    "on-secondary-fixed": "#1c1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "gutter-card": "12px",
+                    "section-gap": "32px",
+                    "stack-md": "16px",
+                    "margin-page": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .splash-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .muflix-logo {
+            color: #E50914;
+            text-shadow: 0 0 40px rgba(229, 9, 20, 0.4);
+            animation: logo-reveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+        }
+
+        .loading-bar-container {
+            width: 140px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 24px auto 0;
+            overflow: hidden;
+            border-radius: 999px;
+            opacity: 0;
+            animation: fade-in 1s ease 1s forwards;
+        }
+
+        .loading-bar-progress {
+            height: 100%;
+            background: #E50914;
+            width: 0%;
+            animation: progress-load 3s ease-in-out forwards;
+        }
+
+        @keyframes logo-reveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+
+        @keyframes progress-load {
+            0% { width: 0%; }
+            20% { width: 10%; }
+            40% { width: 45%; }
+            60% { width: 55%; }
+            85% { width: 95%; }
+            100% { width: 100%; }
+        }
+
+        .background-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(22, 22, 22, 1) 0%, rgba(10, 10, 10, 1) 100%);
+            z-index: 1;
+        }
+
+        .grain-texture {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.03;
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+        }
+
+        .glow-sphere {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            pointer-events: none;
+            filter: blur(80px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="dark bg-background">
+<!-- Subtle Background Elements -->
+<div class="background-overlay"></div>
+<div class="grain-texture"></div>
+<div class="glow-sphere"></div>
+<!-- Cinematic Background Ambient (WebGL Shader Placeholder) -->
+
+<!-- Main Content Canvas -->
+<main class="splash-container">
+<!-- Logo Section -->
+<h1 class="muflix-logo font-display-lg text-display-lg tracking-tighter uppercase mb-4">
+            Muflix
+        </h1>
+<!-- Animated Slogan / Intro Text -->
+<p class="text-on-secondary-container font-label-md text-label-md tracking-[0.3em] uppercase opacity-0" style="animation: fade-in 1.5s ease 1.8s forwards;">
+            Cinema Reimagined
+        </p>
+<!-- Premium Loading State -->
+<div class="loading-bar-container">
+<div class="loading-bar-progress"></div>
+</div>
+</main>
+<!-- Footer Identity (Non-Navigational) -->
+<div class="fixed bottom-12 left-0 w-full flex flex-col items-center justify-center z-20 opacity-0" style="animation: fade-in 1s ease 2.5s forwards;">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-container text-[18px]">verified_user</span>
+<span class="text-on-secondary-container font-label-sm text-label-sm uppercase tracking-widest">Studio Grade Experience</span>
+</div>
+<p class="text-on-secondary-container/40 font-label-sm text-[10px] uppercase tracking-widest">
+            © 2024 MUFLIX ENTERTAINMENT
+        </p>
+</div>
+<script>
+        // Micro-interaction: Mouse tracking glow
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.glow-sphere');
+            if (glow) {
+                const x = e.clientX;
+                const y = e.clientY;
+                glow.style.left = `${x}px`;
+                glow.style.top = `${y}px`;
+            }
+        });
+
+        // Simulating the end of splash screen to potentially navigate (logic-only, no visible UI)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log("Splash sequence complete. Ready for App entry.");
+                // Here one would typically trigger a redirect or state change.
+            }, 3500);
+        });
+    </script>
+</body></html>

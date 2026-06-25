@@ -1,0 +1,230 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Muflix | Enter the Cinematic Universe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            margin: 0;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            transform: rotate(-10deg) scale(1.5);
+            filter: brightness(0.3) blur(4px);
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            z-index: 0;
+        }
+        .button-glow:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-10deg) scale(1.5); }
+            50% { transform: translateY(-20px) rotate(-10deg) scale(1.52); }
+            100% { transform: translateY(0px) rotate(-10deg) scale(1.5); }
+        }
+        .animate-float {
+            animation: float 20s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#e9bcb6",
+                      "surface-tint": "#ffb4aa",
+                      "surface-bright": "#3a3939",
+                      "surface-variant": "#353534",
+                      "surface-container-low": "#1c1b1b",
+                      "inverse-primary": "#c0000c",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-container": "#b7b5b4",
+                      "on-primary-fixed-variant": "#930007",
+                      "background": "#131313",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "secondary": "#c8c6c5",
+                      "primary-fixed": "#ffdad5",
+                      "surface-container-lowest": "#0e0e0e",
+                      "tertiary-fixed": "#e2e2e2",
+                      "surface-dim": "#131313",
+                      "tertiary-container": "#717373",
+                      "surface-container-highest": "#353534",
+                      "on-secondary": "#313030",
+                      "on-secondary-fixed-variant": "#474746",
+                      "secondary-fixed": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-primary": "#690003",
+                      "surface": "#131313",
+                      "outline-variant": "#5e3f3b",
+                      "on-tertiary": "#2f3131",
+                      "outline": "#af8782",
+                      "error": "#ffb4ab",
+                      "on-error": "#690005",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "primary": "#ffb4aa",
+                      "tertiary": "#c6c6c7",
+                      "inverse-surface": "#e5e2e1",
+                      "on-primary-fixed": "#410001",
+                      "on-primary-container": "#fff7f6",
+                      "surface-container-high": "#2a2a2a",
+                      "on-background": "#e5e2e1",
+                      "secondary-container": "#474746",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-container": "#f9f9f9",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "error-container": "#93000a",
+                      "on-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "primary-container": "#e50914",
+                      "on-secondary-fixed": "#1c1b1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "gutter-card": "12px",
+                      "section-gap": "32px",
+                      "stack-md": "16px",
+                      "margin-page": "20px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "label-sm": ["Plus Jakarta Sans"],
+                      "label-md": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "display-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-margin-page relative overflow-hidden">
+<!-- Cinematic Backdrop -->
+<div class="poster-grid animate-float">
+<!-- Row 1 -->
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A gritty cinematic movie poster for a sci-fi thriller featuring a lone astronaut walking across a neon-lit futuristic cityscape at night. The lighting is dominated by deep blues and vibrant red accents, casting long shadows. The style is high-fidelity and atmospheric, suggesting an epic blockbuster scale with premium cinematic grading." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd_3xHsSpXtSRzhqzWAQkqCvIlbBxWozqWlO7Lvnh1XbwCcRCC-sTwb2IXjXFh5PRZItVCg8HWPG2ZVl3kd5FC4nz4plhLJnYc8JGEZDy8n6fJ_-fNJg4QzN-n8RcUUvOJfwjrJuy2JP-3SEZFrbuUF_RSxxkdPKQi0A2a6BIVsHATeHM2mQMQj4K4l_Jc_CAyRIqwjkbOBCv8L3z8R8Xs1UDZLijkwSgVYiPdzO8tjiNXPqphGAnP')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A dramatic movie poster showcasing a classical period drama. A silhouette of a woman in an elegant gown stands before a grand, dimly lit ballroom with gold filigree details and flickering candlelight. The color palette is warm, featuring deep ambers and rich mahogany tones, creating a sense of sophisticated mystery and high-end cinematic quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfuNv_ZjAF1aaQAXRu217ThE0V1Y1urEjqIyVUzZWh0Joeu-ZlVHfM_vftvJlre_vGS5IbRZso0mt-4uzBDUj8QPYQwsyzI7Q_LNlI3s865wGr2kgj9dn9ZlvwlRU_BUAXfazijB6s08KVySJqDqMR-IVvUX7yppvkDRIGQH6ZadNP3SjyHXrLZYSJM3MSwJe2FkAVawJnCvU2iUkD6sa520q9Dx9CbvDXefkBhZ1q7zsuaee5MBzk')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="An action-packed movie poster for a superhero film. Intense glowing orange sparks fly across a dark urban background where a masked figure stands in a heroic pose. The lighting is high-contrast with sharp highlights and deep blacks, following a premium theater aesthetic with saturated red highlights and a sense of dynamic energy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlHRVjAO71AhTUi8D7hjMtVujVEKKxr3u49YmFd4AiXla2FXc02RsmMbwWrK54KOcNHh0ds4rSNxwvx-CJhVcB9vEbpaXi5Yen4Z_N6ryp_8CqV1sBa7OSKJDnSorOXIWbc3j04w2BKsO-MB2mOG3BELJZ0hQOrYOxFKXB_4oDC5ar9P2aYa7NSnq1Lxh9CJLE5KRChLLQEgGDSA4s9RdQrbOcUoq8nGrG7BekJKMYz1WZr4Syj5U6')"></div>
+</div>
+<!-- Row 2 -->
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A minimalist horror movie poster featuring a single, eerie house on a hill under a massive, silver full moon. The landscape is cloaked in thick fog and deep shadows, using a monochromatic black and white palette with a single stroke of vibrant blood-red text. The mood is unsettling yet artistically sophisticated and premium." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjXUjC8y2eTaiHDXa3_CxJXEzj8uIEt23BJnsPz_leOkhYHDEr0sGs7-Ug3tVNbO-0_uds5aHqmlVLAa0RXQ_bvrhMNeVEVT0hMcYp6udBu00dHq5vOVBb3v3wTergbmNcxvR0IXzNP3NuxrO8RyY-FhEWMPBgbLvjwFZHL5WI0GsdDZvHuEvs-aZrF5RN7AqP8OAv9okfo4UaKIkT2px6818lBn1_4QhvFWr4Ptb8zFWkZkIvJGQb')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A vibrant animated film poster showing a lush, fantastical forest filled with glowing bioluminescent plants and curious mythical creatures. The lighting is soft and ethereal, using a wide gamut of purples, cyans, and deep forest greens. The visual style is polished 3D rendering with a premium, high-budget animation feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9Z2ezB9gQuzTumlZomjFZcErPkLh_3hF5OtcHx0bqq8JtCRTLUW23375rXHUh7yqQJx18N-V7Sta9pq6K2qqIyLOJu1sLoWAWpkxjEH1eLzqzpf7OkJRgmo0h1AmNLod7HaD9UyJQ_HVa-yi2Pvz3za_wrYIQ9goJWuj3CiPFvR0SYDlbygSONcOvjjZLuaZ7y1KY2Rl43xVatTE4TuseTepEyK6C9JDhozqR3-Z1tIu7cjSu1jUg')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A close-up dramatic portrait of a grizzled detective for a noir crime film. Rain droplets are visible on his face, illuminated by a harsh street lamp. The lighting is low-key and high-contrast, emphasizing textures and emotions. The aesthetic is gritty, sophisticated, and follows a cinematic dark-mode palette of charcoals and deep reds." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgu8pzVBaBR6fa6wzCidXnyVpHiHUw-UOdbqoSGQeCn44XN44EP9xV93abzKzFFNVy-NF6xGeP1U8oRERhUzbEKniu0YQDHySnaDLpKsJ5KOUcphlf5sxfAWNh4GlyUdp4bfUdsKq_7CkvCXZJJWFx9_oRMpaxx0kpAFc_gHCP73ZkDiJ46cTgsTaqMpKNFGc9_N216DtGAQc91WejQfq9A1Qx-OMKmmGBAEwoxjH1vS2QaPOr2PYd')"></div>
+</div>
+<!-- Row 3 -->
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="An expansive desert landscape at sunset for a sweeping epic western. The sky is a gradient of deep orange and burning red, with a lone rider silhouetted against the horizon. The composition is cinematic and wide, using rich earthy tones and a sense of infinite scale common in high-fidelity filmmaking." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3SJ7ddnNPsZq5OTzr7YoGg3GEK5Q44pn20oGV_E0Ls6TasDQ7AnVC7kg6UI8ltIH-DQtMtDdprz9KkGxLBBW9MdnxckHKwB5QZDOLYypmxsJ85hdgxDLwqAK64GfpS7BprOev3IJBqip1tJ9O-MuspUgYqRZ-1zu7vQLQPNqL7l_Es8zgHyMhGjdYyAkqXSLdYaPhSPiMAXjG3puXS3A3ZgxrZ301OLkA3yh-LPpON52-_H-nMGn2')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A futuristic cybernetic interface overlaying a sprawling metropolis for a techno-thriller. Digital data streams in glowing red flow through the dark city streets. The lighting is artificial and sharp, creating a high-tech glassmorphism effect that feels modern, premium, and deeply immersive." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_iouaUaOTtStlyizBiV94lsQc0fUIQvrKJhgydr3RYqJS__HFZFGzTsukmai5SJNJnzW2EhDRAPbhQ7PQn4YY2eUrEUiFasEgQV178w8dpn4gjsUZyX8DgW8Jez54YnZyeCjgYYevIxcYxzkn5jErb8u8uptDatFM3l8DQqrHbyzDgsedH9jctbTRKVlmf_vetyDlQ7pNSnnIjjt3gdBBQjnLUxVAA8ZFMyPQiWCfmwxxkpoQP3pC')"></div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center opacity-70" data-alt="A serene underwater shot for a nature documentary, featuring a majestic blue whale swimming through sunbeams piercing the dark ocean depths. The lighting is natural and dappled, using a range of deep teals and blacks. The aesthetic is clean, breathtaking, and emphasizes the high-resolution quality of the platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoQ_h82f4H5mZovPWZsg4hraTsDf4BqIMxDyk1StiPGg1KyxfnORVLJAEINf4cQwk-Doykdi8njVwRaWDilIbkQSv9_g7NuG925hJLMD0CvnAbaQb06q8NdExUz76LhEA4wc0qtXRl6w3HS-R3jnK3hrRoj7EZOOMgK17L6BcHBNcnYoSJZ6XZWPxpBbgDwCHTjUJw-Yy5Yn7rhKjEbBHELE5eN58zeGFBK1b5ELllZHeIeZ8ETztp')"></div>
+</div>
+</div>
+<!-- Main Content Shell -->
+<main class="relative z-10 w-full max-w-md flex flex-col items-center">
+<!-- Logo Section -->
+<header class="mb-section-gap text-center">
+<h1 class="font-display-lg text-display-lg text-primary-container tracking-tighter mb-2">Muflix</h1>
+<p class="font-body-md text-secondary opacity-80 px-8">Curated cinema for the discerning enthusiast. Experience the theater, anywhere.</p>
+</header>
+<!-- Glass Action Container -->
+<div class="w-full glass-card rounded-[20px] p-8 flex flex-col gap-stack-md border border-white/10">
+<!-- Primary Action -->
+<button class="w-full py-4 bg-primary-container text-on-primary-container rounded-full font-label-md text-label-md uppercase tracking-widest button-glow transition-all hover:bg-primary-container/90 active:scale-95 shadow-lg shadow-primary-container/20">
+                Continue as Guest
+            </button>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-2">
+<div class="h-[1px] flex-1 bg-white/10"></div>
+<span class="font-label-sm text-label-sm text-on-secondary-container/50">OR</span>
+<div class="h-[1px] flex-1 bg-white/10"></div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex flex-col gap-stack-sm">
+<button class="w-full py-4 bg-white/5 hover:bg-white/10 text-on-surface rounded-full font-label-md text-label-md transition-all active:scale-95 border border-white/5 backdrop-blur-md">
+                    Sign In
+                </button>
+<button class="w-full py-4 text-secondary/70 hover:text-on-surface font-label-md text-label-md transition-all active:scale-95">
+                    Create Account
+                </button>
+</div>
+</div>
+<!-- Footer Info -->
+<footer class="mt-section-gap text-center">
+<p class="font-label-sm text-label-sm text-on-secondary-container/40 px-12">
+                By continuing, you agree to Muflix's <a class="underline hover:text-primary-container transition-colors" href="#">Terms of Service</a> and <a class="underline hover:text-primary-container transition-colors" href="#">Privacy Policy</a>.
+            </p>
+</footer>
+</main>
+<!-- Visual Polish: Vignette -->
+<div class="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,#000000_90%)] z-5 opacity-60"></div>
+<script>
+        // Subtle Mouse parallax for posters
+        document.addEventListener('mousemove', (e) => {
+            const grid = document.querySelector('.poster-grid');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            grid.style.transform = `rotate(-10deg) scale(1.5) translate(${x}px, ${y}px)`;
+        });
+
+        // Button interaction sounds/haptics simulation
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Potential for haptic feedback or sound triggers
+                console.log('Action triggered:', btn.innerText);
+            });
+        });
+    </script>
+</body></html>

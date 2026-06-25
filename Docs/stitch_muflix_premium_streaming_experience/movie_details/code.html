@@ -1,0 +1,324 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Muflix - Movie Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#e9bcb6",
+                    "surface-tint": "#ffb4aa",
+                    "surface-bright": "#3a3939",
+                    "surface-variant": "#353534",
+                    "surface-container-low": "#1c1b1b",
+                    "inverse-primary": "#c0000c",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-primary-fixed-variant": "#930007",
+                    "background": "#0A0A0A", /* Overridden to match brand intent #0A0A0A */
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary": "#c8c6c5",
+                    "primary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-dim": "#131313",
+                    "tertiary-container": "#717373",
+                    "surface-container-highest": "#353534",
+                    "on-secondary": "#313030",
+                    "on-secondary-fixed-variant": "#474746",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-primary": "#690003",
+                    "surface": "#131313",
+                    "outline-variant": "#5e3f3b",
+                    "on-tertiary": "#2f3131",
+                    "outline": "#af8782",
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "primary": "#ffb4aa",
+                    "tertiary": "#c6c6c7",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary-fixed": "#410001",
+                    "on-primary-container": "#fff7f6",
+                    "surface-container-high": "#2a2a2a",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#474746",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-container": "#f9f9f9",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "error-container": "#93000a",
+                    "on-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#e50914",
+                    "on-secondary-fixed": "#1c1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "gutter-card": "12px",
+                    "section-gap": "32px",
+                    "stack-md": "16px",
+                    "margin-page": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .backdrop-gradient {
+            background: linear-gradient(to top, #0A0A0A 0%, rgba(10, 10, 10, 0.6) 40%, transparent 100%);
+        }
+        .edge-highlight {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-white">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-page py-4 bg-gradient-to-b from-background to-transparent">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary-container">menu</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-primary-container tracking-tighter" style="font-size: 24px; line-height: 1;">Muflix</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary-container">cast</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pb-32 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative h-[55vh] w-full">
+<div class="absolute inset-0 overflow-hidden">
+<div class="w-full h-full scale-110" data-alt="A breathtaking cinematic wide-angle still from a high-budget sci-fi film featuring a sleek obsidian spacecraft drifting through a vibrant, colorful nebula in deep space. The lighting is dramatic and moody, with high-contrast shadows and glowing neon accents in shades of deep red and violet. The overall aesthetic is ultra-modern, premium, and visually immersive, perfectly capturing a high-fidelity 'lights-out' theater atmosphere with a deep black void as the canvas." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5WYEXsdRLdq48glc5SJzhWJH0gBwP5Y17oTJzKa0oMhoXXYlzLJVa2jCv4P9faMdY__5Y84Rv0KARr4KYrJOqhmc8IP_nIWnfj2kNjifzS5ij1cDXds8s2NcG9iD5T5WhPPIpdwZxyd7rYOJjrdFWTN15zgDYVDhEWl1pICOPRpgF7o4uWlVlltzEr-4hC5272J4qGWbTyA10ww5rZ8veWFglyrgfZ918FST54HHMPkO9-btOdEQp')">
+</div>
+<div class="absolute inset-0 backdrop-gradient"></div>
+</div>
+<!-- Poster Overlay -->
+<div class="absolute -bottom-16 left-margin-page flex items-end gap-stack-md z-10">
+<div class="w-32 h-48 rounded-xl overflow-hidden shadow-2xl border border-white/5 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A vertical movie poster showing a lone enigmatic figure standing at the edge of a futuristic cityscape under a crimson sky. The style is minimalist and high-fidelity, featuring deep black architecture contrasted against sharp red highlights. The composition is sophisticated, with a cinematic lens-like quality that suggests premium storytelling and intense atmosphere, aligning with a dark, high-contrast UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd4-jUPvzIgYRfRyfIpM252Ikmsku_1Y7co96ciV6pHoF4T-ziMMAyjuiu-CRh1Pd6B5DiTMkj_8oXqP0pvZ4Ef9LgRHN8aMFMpg7gBtkgmG48xxIbae_LCGaszcfUlJrmmx3FJ-M9Bo6HQmNKwPQPMz5CzaTqiSXvjaGo-BX9k4pNzfsaUvv_lzv9BnsBugDhiji7PD6_aqOp_YpCl51iQOhrCj77RvQjn7pz4-yLYEWY0S_xTWs1">
+</div>
+<div class="pb-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-1">Cerebral Echoes</h2>
+<div class="flex items-center gap-2 flex-wrap">
+<div class="flex items-center text-[#FFD700]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm font-label-sm ml-1">8.9</span>
+</div>
+<span class="text-on-secondary-container text-label-sm">•</span>
+<span class="text-on-secondary-container text-label-sm font-label-sm uppercase tracking-wider">2h 14m</span>
+<span class="text-on-secondary-container text-label-sm">•</span>
+<span class="text-on-secondary-container text-label-sm font-label-sm">2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTAs & Metadata -->
+<section class="mt-24 px-margin-page space-y-section-gap">
+<div class="flex flex-col gap-stack-md">
+<div class="flex gap-stack-md">
+<button class="flex-1 h-12 bg-primary-container text-white rounded-full font-label-md text-label-md flex items-center justify-center gap-2 active:scale-95 transition-transform edge-highlight">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        Play Now
+                    </button>
+<button class="flex-1 h-12 glass-panel text-white rounded-full font-label-md text-label-md flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                        Watchlist
+                    </button>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="px-3 py-1 bg-surface-variant text-secondary text-[10px] font-bold tracking-widest uppercase rounded-full">Sci-Fi</span>
+<span class="px-3 py-1 bg-surface-variant text-secondary text-[10px] font-bold tracking-widest uppercase rounded-full">Thriller</span>
+<span class="px-3 py-1 bg-surface-variant text-secondary text-[10px] font-bold tracking-widest uppercase rounded-full">Drama</span>
+</div>
+</div>
+<article>
+<p class="text-secondary font-body-md text-body-md leading-relaxed opacity-80">
+                    In a world where memories can be traded as currency, a rogue detective uncovers a conspiracy that threatens to erase the identity of the entire human race. As the lines between reality and simulation blur, he must confront his own fractured past to save a future he no longer recognizes.
+                </p>
+</article>
+<!-- Cast Horizontal Carousel -->
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-stack-md px-1">Cast</h3>
+<div class="flex gap-gutter-card overflow-x-auto no-scrollbar -mx-margin-page px-margin-page pb-2">
+<!-- Actor 1 -->
+<div class="flex-shrink-0 w-24 text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-2 border border-white/5">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a sophisticated male actor with sharp features and thoughtful expression. The lighting is dramatic high-contrast, moody, and clean, fitting a premium cinematic brand. The background is a soft, dark neutral grey that makes the subject pop, following a minimalist and high-fidelity aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD73_AiDLsbughWf85W7d12ecS7y9m_xzBL7JMiaCL6CWA0kp2MosHq24jjoDvWcTbOX5putxXRXfwhK6EgI-dC95BY7fQ4NwLJI3fYzEnVr_kj1kA9q8Yo_P7-lm5BUqMnWdM2FcULVhGrWvm2aT7N3ChfsiaDubG9wSq-DgE-yl-ceaVBReg6RihpU28loxjquUpi-gTmuhMM-C9q5R-VciE4PTzTK4HPHibDQKirBoxMO52JmOZM">
+</div>
+<span class="block text-label-sm font-label-sm text-on-surface truncate">Ethan Vance</span>
+</div>
+<!-- Actor 2 -->
+<div class="flex-shrink-0 w-24 text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-2 border border-white/5">
+<img class="w-full h-full object-cover" data-alt="A stunning studio portrait of a female actress with a powerful presence, captured in soft side-lighting that highlights elegant contours. The color palette is muted and sophisticated, dominated by deep blacks and cool tones, perfectly aligning with a premium, theater-like movie UI experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFrOrYqEnZIAYeKTjCt4bVSfLw7Z7sKGhQ--ToyZWnOIxAEgVQzeKx8myxP2bp3NU8c79r9bm3Mios3yPqbipGmNDH4BwhyiJm2krrAO01Y7AP8d3rnm_qx6pgd7BU4NwmvzW-trz3Dh_33C7Vu5p4uI04Zi7HTKw7ePyND_1DV3pq2IV6zZioPpTB2hK-dNDYmui0sbCUed3LvnJHdMUib1ZDC2qcxdMP5mTiL9POoKyKE0_Tcl7r">
+</div>
+<span class="block text-label-sm font-label-sm text-on-surface truncate">Maya Sterling</span>
+</div>
+<!-- Actor 3 -->
+<div class="flex-shrink-0 w-24 text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-2 border border-white/5">
+<img class="w-full h-full object-cover" data-alt="Close up dramatic portrait of a character actor with weathered features and intense eyes. The shot is stylized with a cinematic lens feel, featuring high-contrast shadow work and a minimalist dark background that emphasizes the high-fidelity quality of the imagery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOyWi0tdnNXHa4uHtqzwC3--NzS7mWR4KIx-fv8UbEulOaFydUO5kvZhOlGVtZcGYF2kiegZJa-yOX-dJMw9aN5NhFKsI5DY8LjrrajqPjjJH6II_5jm018vJFcJCkb9VVVLYJhxGNLbTKlh10x0b50k9ikqKlCnykIltbsQgxpypnhB7DcHnrSDHH_n52TKeOu4QEplqdA1AUgBRmqrRNjkYZWel-Or6XRX2HY2ssOhPnlVyhM1yO">
+</div>
+<span class="block text-label-sm font-label-sm text-on-surface truncate">Julian Cross</span>
+</div>
+<!-- Actor 4 -->
+<div class="flex-shrink-0 w-24 text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-2 border border-white/5">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist portrait of a rising star actor with a modern, sharp look. The lighting is sophisticated and professional, reflecting a high-end cinematic brand style. The mood is serious and immersive, with deep black shadows and precise focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJZQh8md2PKm_gr1V3yl9QdLLJB0sTHgBLePYnkVLAW_YzynW_w2Ut0ifPtsmoH1UNQWZrn9hNOz3N1PrDrSio3s1PNBCGqAcnABIWJH_LC8zGqsXLgGqnmuOVT7f_Dewm9-gYLbhfjn-UaXohSpDPzp5yN1gRJ-K0qoeLUKK55JCOYuyMhNzOMyf49zBg5E0T6JYv1Pa_KIL8pRZ892OZM6qeXrNYLTD07DZnTm0qiPWFn6gz9bwp">
+</div>
+<span class="block text-label-sm font-label-sm text-on-surface truncate">Sarah J. Miller</span>
+</div>
+<!-- Actor 5 -->
+<div class="flex-shrink-0 w-24 text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-2 border border-white/5">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a seasoned veteran actor, showing depth and character. The image is high-contrast, crisp, and presented in a cinematic lighting style that fits a premium entertainment app's 'lights-out' theater atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9WUSgw3qFiRFXaukQpjADoDfrHLt-iyenFDtdLvPwWOXP8wqiZL4-UqLfzx9bfmQdEJlx1df4O70_c03h8xc0nQq0PSRBUYrnPergw2h0eHxPbILHjS2bWBzakXItiLIHixEZVZHaYKX74C78JQqzUufkjEQgdHQ7RFPTX3zE-Vtp3JL6G1Hx1CLl7ch8LUbUFz_8J3mM9qDMGp2qeI3X7retCXEvrvN2e0rRWkj-JDsueJVeX723">
+</div>
+<span class="block text-label-sm font-label-sm text-on-surface truncate">David Thorne</span>
+</div>
+</div>
+</div>
+<!-- Similar Movies -->
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-stack-md px-1">Similar Movies</h3>
+<div class="flex gap-gutter-card overflow-x-auto no-scrollbar -mx-margin-page px-margin-page pb-4">
+<div class="flex-shrink-0 w-32 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform">
+<img class="w-full aspect-[2/3] object-cover" data-alt="A cinematic poster for a mystery film showing a rain-slicked neon street at night with a mysterious figure holding an umbrella. The color palette is dominated by deep blues and vibrant red highlights, maintaining a high-fidelity and sophisticated aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA7lrnnNSyP28YlLEyJCmNJwAYPzPO0QZ8-L9RqYoe2OgsE4ikMsRVtrnBZ6KfYYoqw9d_cDt9l6-DI3jatM94g1BFggEK4WleC9RQMdoJ6l7ZVmU2i_SK-c8iTAaP8xaiu8IPkkzjtDmCjZ7yxxmWDhj0zTLxUwDbz6CglCxU0fZ3DsSgqPBBID1yIgYWeoBfNi0rz5zNhpcnrhrn1Y8Q_v6T-RB4lkEyzCzD7q9krJ2nXurnpygd">
+</div>
+<div class="flex-shrink-0 w-32 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform">
+<img class="w-full aspect-[2/3] object-cover" data-alt="Minimalist movie poster featuring a stylized eye with a galaxy reflecting in the pupil. The aesthetic is surreal and high-concept, using deep space blacks and glowing white and red accents to create a premium cinematic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjR8dVG0KFxKdu8jv9DivujW_CZiGrTHluAdVyKmK0-ukgU6HZw9oTvK3YtA3YBCs6CVSQ1iaXzlLNFD8oBf-VnKHrEvP-fxlauiD8r2VuVew8EN-Pb8V8rPgU--EPVX5BEIBRY8AZTdzeOif7jhXfqKH0UFuoO03j3PdPASZHb2WeDhJaZ3gqJkm6V4268HpQA7bfEvJWTPEo6ujHcUkiigBdX3ST82zM65ua1_Xd2thE0THeIO8G">
+</div>
+<div class="flex-shrink-0 w-32 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform">
+<img class="w-full aspect-[2/3] object-cover" data-alt="Intense sci-fi movie poster depicting a geometric portal opening in a desert landscape under a double sun. The lighting is warm but the composition is cold and technical, aligning with high-end cinematic design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIfiAq0qZSbNBb-8P9JSBlV6yf-h-2dm_rkyNPruh_sXCpHASMo8nUbkuqrkxtnAFN0ZAjlDHr6HHkWGy-ePLjjULIQUWylrNC7JOAnkfyUJW52fUuxt7hIq3yZLw5QwY6SUBcvJEBYI_MDXZmEaT4kD6X7xfuVle1FzA4pRnYAO7O_4GMKaA6N9WBSCmgDSD18rZUAQWqRnYTWUM1F9l_DbM3NloV6UI5wRYSRaj395vf37D371ku">
+</div>
+<div class="flex-shrink-0 w-32 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform">
+<img class="w-full aspect-[2/3] object-cover" data-alt="Abstract cinematic poster showing lines of light tracing a digital human silhouette against a total black background. Sophisticated, tech-focused, and premium visual style using primary red as the only color accent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl5y6A_KCEQpzoPm6eTQ8tQjRxjXPZT4l1xBmhorOGNG9GyVguXRrZwf-T9bGWTkBvP-Iv1N2uexRaWZ-SALatjtSx-uE9YKPP7rt4tflFTiSG_IRykT8LkAvdV_X7QfkBRoJUT3s_xSmeGaQzzFe0UlwRdjNJd4yNs9R5USRiOiTD5i0niuN54ldsN9gFF-r91VZg83JAEEWvcNqmqfiDuShnO6RzdEm5w7zOkFty2XB_6PxRf30V">
+</div>
+</div>
+</div>
+<!-- Recommended -->
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-stack-md px-1">Recommended For You</h3>
+<div class="flex gap-gutter-card overflow-x-auto no-scrollbar -mx-margin-page px-margin-page pb-4">
+<div class="flex-shrink-0 w-64 h-36 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform relative group">
+<img class="w-full h-full object-cover" data-alt="A wide cinematic landscape showing a futuristic research base on an icy mountain peak under a starry sky. The lighting is cool and ethereal with subtle lens flares, capturing a sense of discovery and high-fidelity production." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBprejgebe7UwQfu0FCvdhNYUqX0J3xg6PxWE95UhiXN7GwtvnO5Jr1PS1Y0SJ77hYqXzL7b13hiv8udjKHWKp8n5spnF5xDTmmQHARCUWX8dt3vp-IxtppjGh6zKzXNhIBVlKzh9L1RuU90T5B2oDC0gqcr4d3vRttFXcYxo69H8K4ggH89OQ6WdKry5fYAY8a3NSAbLXPNGguxV8HtAnysB7xidQHrrPYpL2Ne0nRbuOA9h9e1Cyu">
+<div class="absolute bottom-0 left-0 w-full p-3 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-label-sm font-label-sm truncate">The Frozen Horizon</p>
+</div>
+</div>
+<div class="flex-shrink-0 w-64 h-36 rounded-xl overflow-hidden glass-panel active:scale-95 transition-transform relative group">
+<img class="w-full h-full object-cover" data-alt="Action-packed cinematic frame showing a high-speed chase through a neon-lit futuristic tunnel. The motion blur and vibrant red trails create a sense of speed and intensity in a premium dark-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPgvhlGUgoJ-ABesVsTuM681Mk7evPUuYunacXfYoEUFpPMDnnMeKXx0zOJzzqjRDtH_GfRNJ6zyXDi1R6I1u_ENetbDfaFeuQZtUqF_lUp0ufBuM8pT4MnyH73Qzo-9UE9QhPEUgZze0uJkPuNYkRyUAD2s8kXjuRq-uzw_OWA9PzF2XSwHRRsPZDSJnwv0vv_93MJK7icZKMX3dKRcTJrJ90rz8V8Ujf0B1X6Tp5YLazKf8i2mkP">
+<div class="absolute bottom-0 left-0 w-full p-3 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-label-sm font-label-sm truncate">Neon Circuit</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-page pb-6 pt-4 bg-gradient-to-t from-background via-background/80 to-transparent backdrop-blur-md">
+<!-- Home (Active Choice for details as it belongs to the browse journey) -->
+<a class="flex flex-col items-center justify-center text-primary-container transition-colors duration-300 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Search -->
+<a class="flex flex-col items-center justify-center text-on-secondary-container transition-colors duration-300 hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<!-- Categories -->
+<a class="flex flex-col items-center justify-center text-on-secondary-container transition-colors duration-300 hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Categories</span>
+</a>
+<!-- Library -->
+<a class="flex flex-col items-center justify-center text-on-secondary-container transition-colors duration-300 hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">video_library</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-secondary-container transition-colors duration-300 hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the play button
+        const playBtn = document.querySelector('button.bg-primary-container');
+        if (playBtn) {
+            playBtn.addEventListener('click', () => {
+                playBtn.classList.add('scale-95');
+                setTimeout(() => playBtn.classList.remove('scale-95'), 150);
+            });
+        }
+
+        // Handle navigation clicks active state simulation
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.classList.remove('text-primary-container');
+                    i.classList.add('text-on-secondary-container');
+                    i.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+                });
+                item.classList.add('text-primary-container');
+                item.classList.remove('text-on-secondary-container');
+                item.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>
